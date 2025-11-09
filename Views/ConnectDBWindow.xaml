@@ -32,35 +32,35 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Margin="0,0,0,10">
                 <TextBlock Text="Database" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:TextBox x:Name="txtDatabase" PlaceholderText="Enter Name Database"/>
+                <ui:TextBox Text="{Binding DatabaseName, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter Name Database"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0,0,0,10">
                 <TextBlock Text="Username" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:TextBox x:Name="txtUsername" PlaceholderText="Enter Username"/>
+                <ui:TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter Username"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Margin="0,0,0,10">
                 <TextBlock Text="Password" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:PasswordBox x:Name="txtPassword" PlaceholderText="Enter Password"/>
+                <ui:PasswordBox x:Name="PasswordBox" PlaceholderText="Enter Password"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Margin="0,0,0,20" Orientation="Vertical">
-                <TextBlock x:Name="txtMessage"/>
+                <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <ui:Button x:Name="btnConnect" Content="Connect" Width="80" Margin="0,0,10,0" Appearance="Primary"/>
-                    <ui:Button x:Name="btnCancel" Content="Cancel" Width="80" Appearance="Caution"/>
+                    <ui:Button Command="{Binding Connect}" Content="Connect" Width="80" Margin="0,0,10,0" Appearance="Primary" Click="btnConnect_Click"/>
+                    <ui:Button Command="{Binding Cancel}" Content="Cancel" Width="80" Appearance="Caution"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="4" HorizontalAlignment="Center" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
                     <TextBlock Text="Host" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                    <ui:TextBox x:Name="txtHost" PlaceholderText="localhost" Text="localhost"/>
+                    <ui:TextBox Text="{Binding Host}" PlaceholderText="localhost"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Port" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                    <ui:TextBox x:Name="txtPort" PlaceholderText="5432" Text="5432"/>
+                    <ui:TextBox Text="{Binding Port}" PlaceholderText="5432"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="5" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <TextBlock Text="Need help?" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock Text="Need help?" FontWeight="SemiBold" Margin="0,0,0,5" VerticalAlignment="Center"/>
                 <ui:HyperlinkButton Content="Visit our documentation" NavigateUri="https://example.com/docs" />
             </StackPanel>
 
