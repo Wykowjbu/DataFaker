@@ -1,0 +1,74 @@
+﻿<ui:FluentWindow
+        x:Class="DataFaker.Views.ConnectDBWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataFaker.Views"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Width="350"
+        Height="450"
+        Title="ConnectDBWindow">
+    <Grid>
+        <!-- Title App Destop -->
+        <ui:TitleBar
+            Title="Kết nối Postgresql"
+            Grid.Row="0"
+            CloseWindowByDoubleClickOnIcon="True">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/datafaker-icon-256.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+        <Grid Margin="20,40,20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                <TextBlock Text="Database" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <ui:TextBox x:Name="txtDatabase" PlaceholderText="Enter Name Database"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                <TextBlock Text="Username" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <ui:TextBox x:Name="txtUsername" PlaceholderText="Enter Username"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Margin="0,0,0,10">
+                <TextBlock Text="Password" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <ui:PasswordBox x:Name="txtPassword" PlaceholderText="Enter Password"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Margin="0,0,0,20" Orientation="Vertical">
+                <TextBlock x:Name="txtMessage"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <ui:Button x:Name="btnConnect" Content="Connect" Width="80" Margin="0,0,10,0" Appearance="Primary"/>
+                    <ui:Button x:Name="btnCancel" Content="Cancel" Width="80" Appearance="Caution"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="4" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                    <TextBlock Text="Host" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <ui:TextBox x:Name="txtHost" PlaceholderText="localhost" Text="localhost"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Port" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <ui:TextBox x:Name="txtPort" PlaceholderText="5432" Text="5432"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="5" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <TextBlock Text="Need help?" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <ui:HyperlinkButton Content="Visit our documentation" NavigateUri="https://example.com/docs" />
+            </StackPanel>
+
+        </Grid>
+
+            
+          
+        
+
+    </Grid>
+</ui:FluentWindow>
