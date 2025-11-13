@@ -1,0 +1,70 @@
+﻿<ui:FluentWindow x:Class="DataFaker.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataFaker.Views"
+        xmlns:views="clr-namespace:DataFaker.Views"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ui:TitleBar
+                Title="Kết nối Postgresql"
+                Grid.Row="0"
+                CloseWindowByDoubleClickOnIcon="True" Height="30">
+                <ui:TitleBar.Icon>
+                    <ui:ImageIcon Source="pack://application:,,,/Assets/datafaker-icon-256.png" />
+                </ui:TitleBar.Icon>
+            </ui:TitleBar>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="202*"/>
+                    <ColumnDefinition Width="173*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0" Grid.ColumnSpan="2" >
+                    <MenuItem Header="File">
+                        <MenuItem Header="New Connect"/>
+                        <Separator/>
+                        <MenuItem Header="Open Log File" InputGestureText="Ctrl+Shift+O"/>
+                        <MenuItem Header="Save Log File" InputGestureText="Ctrl+S"/>
+                        <MenuItem Header="Save Log File As" InputGestureText="Ctrl+Shift+S"/>
+                        <MenuItem Header="Clean Log File"/>
+                        <Separator/>
+                        <MenuItem Header="Open Window" InputGestureText="Ctrl+N"/>
+                        <MenuItem Header="Close Window" InputGestureText="Ctrl+Alt+D"/>
+                        <MenuItem Header="Clear Window" InputGestureText="Ctrl+Shift+D"/>
+                    </MenuItem>
+                    <MenuItem Header="Edit">
+                        <MenuItem Header="New Data" InputGestureText="Ctrl+Enter"/>
+                        <MenuItem Header="Revert Data" InputGestureText="Ctrl+Z"/>
+                        <Separator/>
+                        <MenuItem Header="Copy To ClipBoard" InputGestureText="Ctrl+C"/>
+                    </MenuItem>
+                    <MenuItem Header="Help">
+                        <MenuItem Header="About"/>
+                    </MenuItem>
+                </Menu>
+                <ui:Button Grid.Column="2" Margin="0,0,10,0" >
+                    <ui:SymbolIcon Symbol="Settings24"/>
+                </ui:Button>
+            </Grid>
+          
+            <Grid Grid.Row="2">
+    <views:PageWindow />
+</Grid>
+           
+            
+            
+        </Grid>
+    </Grid>
+</ui:FluentWindow>
