@@ -8,11 +8,58 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="This is a Page Window" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="24"/>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <!-- thanh nav trái -->
+                <ColumnDefinition Width="*"/>
+                <!-- content phải -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Menu trái: ListView Schema + Table -->
+            <ui:DataGrid ItemsSource="{Binding Schemas}"
+                         Grid.Column="0"
+                         SelectedItem="{Binding SelectedSchema, Mode=OneWayToSource}"
+                         AutoGenerateColumns="False"
+                         IsReadOnly="True"
+                         SelectionMode="Single"
+                         SelectionUnit="FullRow" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Schema" 
+                                        Binding="{Binding Name}" />
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <DataGrid ItemsSource="{Binding Tables}"
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="None"
+                                  CanUserAddRows="False"
+                                  IsReadOnly="True">
+                            <DataGrid.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick"
+                                              Command="{Binding DataContext.TableDoubleClickCommand, 
+                                        RelativeSource={RelativeSource AncestorType={x:Type local:PageWindow}}}"/>
+                            </DataGrid.InputBindings>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Name}"  />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+
+            </ui:DataGrid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- lọc dữ liệu -->
+                    <RowDefinition Height="*"/>
+                    <!-- hiển thị data -->
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"></Grid>
+                <Grid Grid.Row="1"></Grid>
+            </Grid>
+        </Grid>
+
 
     </Grid>
 </UserControl>
