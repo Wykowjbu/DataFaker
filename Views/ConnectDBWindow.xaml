@@ -36,19 +36,27 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0,0,0,10">
                 <TextBlock Text="Username" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter Username"/>
+                <ui:TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter Username"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Margin="0,0,0,10">
                 <TextBlock Text="Password" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:PasswordBox x:Name="PasswordBox" PlaceholderText="Enter Password"/>
+                <ui:PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Enter Password"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Margin="0,0,0,20" Orientation="Vertical">
-                <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <ui:Button Command="{Binding Connect}" Content="Connect" Width="80" Margin="0,0,10,0" Appearance="Primary" Click="btnConnect_Click"/>
-                    <ui:Button Command="{Binding Cancel}" Content="Cancel" Width="80" Appearance="Caution"/>
-                </StackPanel>
+                <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding MessageColor}"/>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <ui:ProgressRing Visibility="{Binding IsLoading,Converter={StaticResource BoolToVisibilityConverter}}" IsIndeterminate="True" Width="20" Height="20"/>
+                        <ui:Button Command="{Binding Connect}" IsEnabled="{Binding IsNotLoading}" Content="Connect" Width="80" Margin="10,0,10,0" Appearance="Primary"/>
+                    </StackPanel>
+                    <ui:Button Grid.Column="1" Command="{Binding Cancel}" Content="Cancel" Width="80" Appearance="Caution" Margin="10,0,0,0"/>
+                </Grid>
             </StackPanel>
+
             <StackPanel Grid.Row="4" HorizontalAlignment="Center" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
                     <TextBlock Text="Host" Margin="0,0,10,0" VerticalAlignment="Center"/>
