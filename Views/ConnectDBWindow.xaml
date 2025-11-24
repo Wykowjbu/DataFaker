@@ -36,16 +36,16 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0,0,0,10">
                 <TextBlock Text="Username" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter Username"/>
+                <ui:TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter Username"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Margin="0,0,0,10">
                 <TextBlock Text="Password" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ui:PasswordBox x:Name="PasswordBox" PlaceholderText="Enter Password"/>
+                <ui:PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Enter Password"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Margin="0,0,0,20" Orientation="Vertical">
-                <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding MessageColor}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <ui:Button Command="{Binding Connect}" Content="Connect" Width="80" Margin="0,0,10,0" Appearance="Primary" Click="btnConnect_Click"/>
+                    <ui:Button Command="{Binding Connect}" Content="Connect" Width="80" Margin="0,0,10,0" Appearance="Primary"/>
                     <ui:Button Command="{Binding Cancel}" Content="Cancel" Width="80" Appearance="Caution"/>
                 </StackPanel>
             </StackPanel>
