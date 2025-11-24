@@ -22,6 +22,12 @@ namespace DataFaker.ViewModels
 
         [ObservableProperty] private Brush messageColor;
 
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsNotLoading))]
+        private bool isLoading;
+
+        public bool IsNotLoading => !isLoading;
+
         private readonly DatabaseService _databaseService;
 
         public event EventHandler<List<Schema>>? ConnectionResult;  
@@ -38,6 +44,8 @@ namespace DataFaker.ViewModels
 
         private async Task RunConnectAsync()
         {
+            IsLoading = true;
+            Message = "Connecting...";
             var database = new Database
             {
                 Host = host,
@@ -50,8 +58,9 @@ namespace DataFaker.ViewModels
             var result = await _databaseService.ConnectAsync(database);
             if (result.Success)
             {
-                Message="Connection successful!";
+                Message="Connection successful! Loading data...";
                 MessageColor = Brushes.Green;
+                await Task.Delay(3000);
                 ConnectionResult?.Invoke(this, result.Schemas);
             }
             else
@@ -59,7 +68,7 @@ namespace DataFaker.ViewModels
                 Message="Connection failed. Please check your credentials and try again.";
                 MessageColor = Brushes.Red;
             }
-
+            IsLoading = false;
 
         }
     }

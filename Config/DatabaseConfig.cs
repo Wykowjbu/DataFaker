@@ -15,7 +15,6 @@ namespace DataFaker.Config
         public DatabaseConfig(string connectionString)
         {
             _connectionString = connectionString;
-            MessageBox.Show(_connectionString);
         }
 
         public NpgsqlConnection GetConnection()
