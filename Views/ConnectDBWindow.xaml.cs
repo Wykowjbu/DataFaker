@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataFaker.Models;
+using DataFaker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,17 @@ namespace DataFaker.Views
         public ConnectDBWindow()
         {
             InitializeComponent();
+            var connectDBViewModel = new ConnectDBViewModel();
+            DataContext = connectDBViewModel;
+            connectDBViewModel.ConnectionResult += ConnectDBSuccess;
+            
+        }
+
+        private void ConnectDBSuccess(Object? sender, List<Schema> schemas)
+        {
+            var mainWindow = new MainWindow(schemas);
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

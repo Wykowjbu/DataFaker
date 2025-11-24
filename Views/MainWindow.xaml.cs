@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DataFaker.Models;
+using DataFaker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,10 @@ namespace DataFaker.Views
     /// </summary>
     public partial class MainWindow : FluentWindow
     {
-        public MainWindow()
+        public MainWindow(List<Schema> schemas)
         {
             InitializeComponent();
+            DataContext = new MainViewModel(schemas);
         }
     }
 }
