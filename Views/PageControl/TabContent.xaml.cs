@@ -1,7 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using DataFaker.Models;
-using DataFaker.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Wpf.Ui.Controls;
 
-namespace DataFaker.Views
+namespace DataFaker.Views.PageControl
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TabContent.xaml
     /// </summary>
-    public partial class MainWindow : FluentWindow
+    public partial class TabContent : UserControl
     {
-        public MainWindow(List<Schema> schemas)
+        public TabContent()
         {
             InitializeComponent();
-            DataContext = new MainViewModel(schemas);
         }
     }
 }

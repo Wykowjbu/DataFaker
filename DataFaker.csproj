@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql" Version="9.0.4" />
     <PackageReference Include="WPF-UI" Version="4.0.2" />
     <PackageReference Include="WPF-UI.DependencyInjection" Version="4.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
@@ -35,8 +36,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
