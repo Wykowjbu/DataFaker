@@ -1,11 +1,6 @@
 ﻿using DataFaker.Config;
 using DataFaker.Models;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataFaker.Services
 {
@@ -51,22 +46,45 @@ namespace DataFaker.Services
         {
             var tables = new List<Table>();
             string query = $"SELECT table_name FROM information_schema.tables WHERE table_schema = '{schemaName}';";
-            using var cmd = new NpgsqlCommand(query, conn);
-            using var reader = await cmd.ExecuteReaderAsync();
-            while (await reader.ReadAsync())
-            {
-                var table = new Table
+            using (var cmd = new NpgsqlCommand(query, conn))
+            using (var reader = await cmd.ExecuteReaderAsync())
+                while (await reader.ReadAsync())
                 {
-                    Name = reader.GetString(0)
-                };
-                tables.Add(table);
+                    var table = new Table
+                    {
+                        Name = reader.GetString(0)
+                    };
+                    tables.Add(table);
+                }
+
+            // Lấy cột cho từng bảng
+            foreach (var table in tables)
+            {
+                table.Columns = await GetColumnsAsync(conn, schemaName, table.Name);
             }
             return tables;
+            
         }
 
 
 
-
+        private async Task<List<Column>> GetColumnsAsync(NpgsqlConnection conn, string schemaName, string tableName)
+        {
+            var columns = new List<Column>();
+            string query = $"SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '{schemaName}' AND table_name = '{tableName}';";
+            using var cmd = new NpgsqlCommand(query, conn);
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var column = new Column
+                {
+                    Name = reader.GetString(0),
+                    DataType = reader.GetString(1)
+                };
+                columns.Add(column);
+            }
+            return columns;
+        }
 
     }
 }
