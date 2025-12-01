@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DataFaker.Views"
-        xmlns:views="clr-namespace:DataFaker.Views"
+        xmlns:views="clr-namespace:DataFaker.Views.PageControl"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -60,8 +59,8 @@
             </Grid>
           
             <Grid Grid.Row="2">
-    <views:PageWindow />
-</Grid>
+                <views:PageControl DataContext="{Binding PageViewModel}"/>
+            </Grid>
            
             
             

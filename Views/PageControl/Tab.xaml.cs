@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DataFaker.Views
+namespace DataFaker.Views.PageControl
 {
     /// <summary>
-    /// Interaction logic for PageWindow.xaml
+    /// Interaction logic for Tab.xaml
     /// </summary>
-    public partial class PageWindow : UserControl
+    public partial class Tab : UserControl
     {
-        public PageWindow()
+        public Tab()
         {
             InitializeComponent();
         }
