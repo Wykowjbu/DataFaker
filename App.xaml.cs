@@ -1,10 +1,8 @@
 ﻿using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Wpf.Ui;
 using DataFaker.Views;
 
 namespace DataFaker
