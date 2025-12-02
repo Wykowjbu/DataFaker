@@ -16,28 +16,35 @@
                 <!-- content phải -->
             </Grid.ColumnDefinitions>
             <!-- Menu trái: ListView Schema + Table -->
-            <ui:DataGrid ItemsSource="{Binding Schemas}" Grid.Column="0" SelectedItem="{Binding SelectedSchema, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" >
+            <ui:DataGrid ItemsSource="{Binding Schemas}"
+                         Grid.Column="0" SelectedItem="{Binding SelectedSchema, Mode=TwoWay}"
+                         AutoGenerateColumns="False"
+                         IsReadOnly="True"
+                         SelectionMode="Single"
+                         SelectionUnit="FullRow" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Schema" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Schema"
+                                        Binding="{Binding Name}" />
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
-                            <DataGrid MouseDoubleClick="Table_MouseLeftButtonDown"
+                        <DataGrid MouseDoubleClick="Table_MouseLeftButtonDown"
                                       ItemsSource="{Binding Tables}"
                                       AutoGenerateColumns="False"
                                       HeadersVisibility="None"
                                       CanUserAddRows="False"
                                       IsReadOnly="True"
-                                  SelectionMode="Single">
-                                <DataGrid.Columns>
+                                      SelectionMode="Single">
+                            <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Name}">
-                                    
-                                    </DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
+
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </ui:DataGrid>
+
             <Grid Grid.Column="1">
                 <local:Tab DataContext="{Binding}"/>
             </Grid>
