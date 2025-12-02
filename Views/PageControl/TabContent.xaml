@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <!--FilterControl-->
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -24,11 +24,46 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--Is Dispaly Filter Button-->
-            <ui:Button Grid.Row="0"
-                       Command="{Binding FilterCommand}"
-                       Margin="10,10,0,0">
-                <ui:SymbolIcon Symbol="Filter24"/>
-            </ui:Button>
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal">
+                <ui:Button Command="{Binding FilterCommand}"
+                           ToolTip="Ctrl+Window+F"
+                           Margin="10,10,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Filter Columns" 
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"/>
+                        <ui:SymbolIcon Margin="10,0,0,0"
+                                       Symbol="Filter24" 
+                                       HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </ui:Button>
+                <ui:Button Command="{Binding CopyToClipboardCommand}"
+                           Margin="10,10,0,0"
+                           ToolTip="Ctrl+C">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Copy To Clipboard" 
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"/>
+                        <ui:SymbolIcon Margin="10,0,0,0"
+                                       Symbol="Copy24" 
+                                       HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </ui:Button>
+                <ui:Button Command="{Binding GenDataCommand}"
+                           ToolTip="Ctrl+N"
+                           Margin="10,10,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Async Data" 
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"/>
+                        <ui:SymbolIcon Margin="10,0,0,0"
+                                       Symbol="ArrowSync24" 
+                                       HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </ui:Button>
+
+            </StackPanel>
             <!--Filter-->
             <Grid Grid.Row="1"
                   Visibility="{Binding IsDisplayFilter, Converter={StaticResource BoolToVisConverter}}">
@@ -37,21 +72,69 @@
                                 PlaceholderText="Enter filter text..."
                                 FontWeight="SemiBold"
                                 Text="{Binding FilterText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    <ui:Button Content="Apply Filter"
-                               Command="{Binding ApplyFilterCommand}"
+                    <ui:Button Content="{Binding ApplyOrReset}"
+                               Command="{Binding ApplyCommand}"
                                Margin="10,0,0,0"
                                Appearance="Primary"/>
                 </StackPanel>
 
             </Grid>
         </Grid>
-        
+
         <!--ContentControl-->
         <Grid Grid.Row="1">
-            <ui:DataGrid ItemsSource="{Binding Columns}"
-                         AutoGenerateColumns="True"
-                         IsReadOnly="True"
-                         Margin="10"/>
+            <ui:DataGrid ItemsSource="{Binding ColumnsPluss}"
+             AutoGenerateColumns="False"
+             CanUserAddRows="False"
+             SelectionMode="Single"
+             Margin="10">
+                <ui:DataGrid.Columns>
+
+                    <DataGridTemplateColumn Header="Is Lock" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ui:ToggleSwitch IsChecked="{Binding IsLocked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="IsNotNull" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ui:ToggleSwitch IsChecked="{Binding IsNotNullable, Mode=OneWay}" 
+                                     IsEnabled="False"
+                                     HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="IsPrimaryKey" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ui:ToggleSwitch IsChecked="{Binding IsPrimaryKey, Mode=OneWay}" 
+                                                 IsEnabled="False"
+                                                 HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Column Name" 
+                            Binding="{Binding Name}" 
+                            IsReadOnly="True" 
+                            />
+
+                    <DataGridTextColumn Header="Data Type" 
+                            Binding="{Binding DataType}" 
+                            IsReadOnly="True" 
+                            />
+
+                    <DataGridTextColumn Header="Value" 
+                            Binding="{Binding Value, UpdateSourceTrigger=PropertyChanged}" 
+                            />
+
+                </ui:DataGrid.Columns>
+            </ui:DataGrid>
         </Grid>
     </Grid>
 </UserControl>
